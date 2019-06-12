@@ -1,7 +1,6 @@
 box: golang
 
 build:
-
   steps:
     - setup-go-workspace
 
@@ -10,19 +9,16 @@ build:
         name: go get
         code: |
           go get
-
     # Build the project
     - script:
         name: go build
         code: |
           go build ./...
-
     # Test the project
     - script:
         name: go test
         code: |
           go test ./...
-
        - script:
         name: copy artifacts to output dir
         code: |
@@ -32,12 +28,9 @@ build:
           cp -a ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
 
 docker-push:
-
   box:
     id: golang
-
   steps:
-
     - script:
         name: copy binaries to /opt/app
         code: |
@@ -59,12 +52,9 @@ docker-push:
         port: 5000/tcp
 
 deploy:
-
   box:
     id: golang
-
   steps:
-
     - script:
         name: debug
         code: |
