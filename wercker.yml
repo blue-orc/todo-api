@@ -28,8 +28,8 @@ build:
         code: |
           # artifacts
           ls -l
-          cp ${WERCKER_ROOT}/source "$WERCKER_OUTPUT_DIR"
-          cp -a ${WERCKER_ROOT}/kubernetes "$WERCKER_OUTPUT_DIR"
+          cp ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
+          cp -a ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
 
 docker-push:
 
@@ -52,8 +52,8 @@ docker-push:
     - internal/docker-push:
         repository: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api
         registry: https://iad.ocir.io
-        username: $OCIR_USERNAME
-        password: $OCIR_PASSWORD
+        username: $"OCIR_USERNAME"
+        password: $"OCIR_PASSWORD"
         tag: ${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
         entrypoint: /opt/source
         port: 5000/tcp
@@ -73,28 +73,23 @@ deploy:
           echo $WERCKER_ROOT
           ls -l $WERCKER_ROOT
     - bash-template:
-        cwd: $WERCKER_ROOT/kubernetes/deployment
+        cwd: $WERCKER_ROOT/
 
     - script:
-        name: Remove template files
-        cwd: $WERCKER_ROOT/kubernetes/deployment
-        code: |
-          rm *.template.yaml
-    - script:
         name: debug
-        cwd: $WERCKER_ROOT/kubernetes/deployment
+        cwd: $WERCKER_ROOT/
         code: |
           ls -l
     - script:
         name: echo tags
         code: |
-          cat $WERCKER_ROOT/kubernetes/deployment/deployment.yaml
+          cat $WERCKER_ROOT/deployment.yaml
           echo "Docker image and tag:"
           echo "${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}"
     - kubectl:
         cwd: $WERCKER_ROOT/kubernetes/deployment
         #kubectl cluster-info > kubernetes master is running at:
-        server: ${KUBE_ENDPOINT}
-        token: ${KUBE_USER_TOKEN}
+        server: $"KUBE_ENDPOINT"
+        token: $"KUBE_USER_TOKEN"
         insecure-skip-tls-verify: true
         command: --namespace apply -f .
