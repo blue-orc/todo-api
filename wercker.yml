@@ -1,9 +1,7 @@
 box: golang
-
 build:
   steps:
     - setup-go-workspace
-
     # Gets the dependencies
     - script:
         name: go get
@@ -26,7 +24,6 @@ build:
           ls -l
           cp ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
           cp -a ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
-
 docker-push:
   box:
     id: golang
@@ -50,7 +47,6 @@ docker-push:
         tag: ${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
         entrypoint: /opt/source
         port: 5000/tcp
-
 deploy:
   box:
     id: golang
