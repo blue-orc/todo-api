@@ -17,7 +17,7 @@ build:
         name: go test
         code: |
           go test ./...
-       - script:
+    - script:
         name: copy artifacts to output dir
         code: |
           # artifacts
@@ -37,8 +37,6 @@ docker-push:
         name: echo docker tag
         code: |
           echo "DOCKER IMAGE:TAG"
-          echo "iad.ocir.io/orasenatdpltdevopsnetw01/todo-api:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}"
-    # For other docker repository refer to this doc: http://devcenter.wercker.com/docs/containers/pushing-containers
     - internal/docker-push:
         repository: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api
         registry: https://iad.ocir.io
@@ -74,7 +72,7 @@ deploy:
           echo "${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}"
     - kubectl:
         cwd: $WERCKER_ROOT/kubernetes/deployment
-        #kubectl cluster-info > kubernetes master is running at:
+        # kubectl cluster-info > kubernetes master is running at:
         server: $KUBE_ENDPOINT
         token: $KUBE_USER_TOKEN
         insecure-skip-tls-verify: true
