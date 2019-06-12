@@ -1,7 +1,7 @@
 box: golang
 build:
   steps:
-    -internal/docker-build:
+    - internal/docker-build:
         dockerfile: Dockerfile
         image-name: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api
 docker-push:
