@@ -20,7 +20,7 @@ ENV TNS_ADMIN=/usr/lib/oracle/18.3/client64/lib/network/admin
 ENV GOPATH=$HOME/go
 
 # Create directory for app files
-WORKDIR $GOPATH/src/trading-platform
+WORKDIR $GOPATH/src/todo-api
 
 # Add wallet files
 ADD ./wallet /usr/lib/oracle/18.3/client64/lib/network/admin/

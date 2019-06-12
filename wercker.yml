@@ -1,47 +1,15 @@
 box: golang
 build:
   steps:
-    - wercker/setup-go-workspace
     - script:
-        name: move
+        name: build docker
         code: |
-          cp -r ${WERCKER_ROOT}/ $GOPATH/src/todo-api
-          cd $GOPATH
-    # Gets the dependencies
-    - script:
-        name: go get
-        code: |
-          go get
-    # Build the project
-    - script:
-        name: go build
-        code: |
-          go build ./...
-    # Test the project
-    - script:
-        name: go test
-        code: |
-          go test ./...
-    - script:
-        name: copy artifacts to output dir
-        code: |
-          # artifacts
-          ls -l
-          cp -r ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
-          cp -r -a ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
+          cd ${WERCKER_ROOT}
+          docker build --rm -f "Dockerfile" -t iad.ocir.io/orasenatdpltdevopsnetw01/todo-api:latest .
 docker-push:
   box:
     id: golang
   steps:
-    - script:
-        name: copy binaries to /opt/app
-        code: |
-          mkdir -p /opt
-          cp -r ${WERCKER_ROOT}/ /opt/
-    - script:
-        name: echo docker tag
-        code: |
-          echo "DOCKER IMAGE:TAG"
     - internal/docker-push:
         repository: orasenatdpltdevopsnetw01
         image-name: todo-api
@@ -49,8 +17,6 @@ docker-push:
         username: $OCIR_USERNAME
         password: $OCIR_PASSWORD
         tag: latest
-        entrypoint: /opt/
-        port: 5000/tcp
 deploy:
   box:
     id: golang
