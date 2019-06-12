@@ -2,6 +2,11 @@ box: golang
 build:
   steps:
     - wercker/setup-go-workspace
+    - script:
+        name: move
+        code: |
+          cp ${WERCKER_ROOT}/ $GOPATH/src/todo-api
+          cd $GOPATH
     # Gets the dependencies
     - script:
         name: go get
