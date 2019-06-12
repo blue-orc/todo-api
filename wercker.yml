@@ -48,7 +48,7 @@ docker-push:
         registry: https://iad.ocir.io
         username: $OCIR_USERNAME
         password: $OCIR_PASSWORD
-        tag: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api:latest
+        tag: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api
         entrypoint: /opt/
         port: 5000/tcp
 deploy:
