@@ -27,8 +27,8 @@ build:
         code: |
           # artifacts
           ls -l
-          cp ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
-          cp -a ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
+          cp -r ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
+          cp -r -a ${WERCKER_ROOT}/ "$WERCKER_OUTPUT_DIR"
 docker-push:
   box:
     id: golang
