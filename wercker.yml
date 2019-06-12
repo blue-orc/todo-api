@@ -5,7 +5,7 @@ build:
     - script:
         name: move
         code: |
-          cp ${WERCKER_ROOT}/ $GOPATH/src/todo-api
+          cp -r ${WERCKER_ROOT}/ $GOPATH/src/todo-api
           cd $GOPATH
     # Gets the dependencies
     - script:
