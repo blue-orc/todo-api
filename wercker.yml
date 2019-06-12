@@ -2,6 +2,10 @@ box: golang
 build:
   steps:
     - setup-go-workspace
+    - script:
+        name: goroot
+        code: |
+          export GOPATH=~/go
     # Gets the dependencies
     - script:
         name: go get
