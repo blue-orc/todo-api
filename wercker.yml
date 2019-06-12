@@ -43,7 +43,7 @@ docker-push:
         code: |
           echo "DOCKER IMAGE:TAG"
     - internal/docker-push:
-        repository: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api
+        repository: orasenatdpltdevopsnetw01
         registry: https://iad.ocir.io
         username: $OCIR_USERNAME
         password: $OCIR_PASSWORD
