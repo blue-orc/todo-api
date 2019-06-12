@@ -52,8 +52,8 @@ docker-push:
     - internal/docker-push:
         repository: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api
         registry: https://iad.ocir.io
-        username: $"OCIR_USERNAME"
-        password: $"OCIR_PASSWORD"
+        username: $OCIR_USERNAME
+        password: $OCIR_PASSWORD
         tag: ${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
         entrypoint: /opt/source
         port: 5000/tcp
@@ -89,7 +89,7 @@ deploy:
     - kubectl:
         cwd: $WERCKER_ROOT/kubernetes/deployment
         #kubectl cluster-info > kubernetes master is running at:
-        server: $"KUBE_ENDPOINT"
-        token: $"KUBE_USER_TOKEN"
+        server: $KUBE_ENDPOINT
+        token: $KUBE_USER_TOKEN
         insecure-skip-tls-verify: true
         command: --namespace apply -f .
