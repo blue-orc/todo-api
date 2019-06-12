@@ -37,7 +37,7 @@ docker-push:
         name: copy binaries to /opt/app
         code: |
           mkdir -p /opt
-          cp ${WERCKER_ROOT}/source /opt/source
+          cp -r ${WERCKER_ROOT}/source /opt/source
     - script:
         name: echo docker tag
         code: |
