@@ -51,6 +51,7 @@ build:
           ls -l
           cp ${WERCKER_ROOT}/source "$WERCKER_OUTPUT_DIR"
           cp -a ${WERCKER_ROOT}/kubernetes "$WERCKER_OUTPUT_DIR"
+
 docker-push:
 
   box:
@@ -118,4 +119,4 @@ deploy:
         username: ${KUBE_USERNAME}
         password: ${KUBE_PASSWORD}
         insecure-skip-tls-verify: true
-command: --namespace ${KUBE_NAMESPACE} apply -f .
+        command: --namespace ${KUBE_NAMESPACE} apply -f .
