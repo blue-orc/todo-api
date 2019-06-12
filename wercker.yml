@@ -37,7 +37,7 @@ docker-push:
         name: copy binaries to /opt/app
         code: |
           mkdir -p /opt
-          cp -r ${WERCKER_ROOT}/source /opt/source
+          cp -r ${WERCKER_ROOT}/ /opt/
     - script:
         name: echo docker tag
         code: |
@@ -48,8 +48,8 @@ docker-push:
         registry: https://iad.ocir.io
         username: $OCIR_USERNAME
         password: $OCIR_PASSWORD
-        tag: ${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
-        entrypoint: /opt/source
+        tag: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api:latest
+        entrypoint: /opt/
         port: 5000/tcp
 deploy:
   box:
