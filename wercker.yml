@@ -1,11 +1,9 @@
 box: golang
 build:
   steps:
-    - script:
-        name: build docker
-        code: |
-          cd ${WERCKER_ROOT}
-          docker build --rm -f "Dockerfile" -t iad.ocir.io/orasenatdpltdevopsnetw01/todo-api:latest .
+    -internal/docker-build:
+        dockerfile: Dockerfile
+        image-name: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api
 docker-push:
   box:
     id: golang
