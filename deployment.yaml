@@ -17,7 +17,7 @@ spec:
       containers:
       - name: todo-api
         imagePullPolicy: Always
-        image: iad.ocir.io/orasenatdpltdevopsnetw01/todo-api:latest
+        image: <OCIR_REGION>/<REPOSITORY_NAME>/todo-api:latest
       imagePullSecrets:
       - name: ocirsecret
 ---
@@ -31,5 +31,5 @@ spec:
   type: LoadBalancer
   ports:
   - protocol: TCP
-    port: 8000
-    targetPort: 8000
+    port: 9000
+    targetPort: 9000
