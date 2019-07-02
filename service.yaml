@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: todo-api-service
+spec:
+  selector:
+    app: todo-api
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 9000
+    targetPort: 9000
